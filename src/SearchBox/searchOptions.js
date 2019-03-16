@@ -13,10 +13,12 @@ class NestedList extends React.Component {
             member : this.props.things
         }
         this.componentMount = this.componentMount.bind(this);
+        this.myRef = React.createRef();
     }
 
     componentMount(e) {
-        console.log("quote service will search: "+e.target.innerText);
+        console.log("quote service will search: ");
+        console.log(this.refs.myRef);
         this.props.finalResult(e.target.innerText);
     }
 
@@ -28,14 +30,14 @@ class NestedList extends React.Component {
     {this.props.things.security.type === undefined ? this.props.things.security.map(row => (<ListItem style = {{textAlign : "left"}} button>
       <ListItemText
        primary = { <React.Fragment>
-        <Typography component="span" color="textPrimary" style = {{fontWeight : 'bold'}}>
+        <Typography ref={this.myRef} component="span" color="textPrimary" style = {{fontWeight : 'bold'}}>
           {`${row['symbol']}`}
         </Typography>
       </React.Fragment>}
       
       secondary={
         <React.Fragment>
-          <Typography component="span" color="textPrimary">
+          <Typography component="span" color="textPrimary" onClick = {(e) => { e.target.innerText = row['symbol']}}>
             {`${row['description']}`}
           </Typography>
         </React.Fragment>
@@ -52,7 +54,7 @@ class NestedList extends React.Component {
     }
         secondary={
             <React.Fragment>
-              <Typography component="span" color="textPrimary">
+              <Typography component="span" color="textPrimary" onClick = {(e) => { e.target.innerText = this.props.things.security['symbol']}}>
                 {`${this.props.things.security['description']}`}
               </Typography>
             </React.Fragment>
