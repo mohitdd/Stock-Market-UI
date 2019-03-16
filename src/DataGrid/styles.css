@@ -1,0 +1,9 @@
+.App {
+    font-family: sans-serif;
+    text-align: center
+  }
+
+.react-grid-Container {
+     margin: 1%;
+     min-height: auto;
+ } 
