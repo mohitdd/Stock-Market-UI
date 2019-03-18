@@ -50,7 +50,7 @@ function Example(props) {
               <TableCell style = {{fontSize : '1rem'}} align="center">{row['05. price']}</TableCell>
               <TableCell style = {{fontSize : '1rem'}} align="center">{row['03. high']}</TableCell>
               <TableCell style = {{fontSize : '1rem'}} align="center">{row['04. low']}</TableCell>
-              <TableCell style = {{fontSize : '1rem'}} align="center">{row['10. change percent']}</TableCell>
+              <TableCell style = {{color : row['10. change percent'] > 0 ? 'green' : 'red' ,fontSize : '1rem'}} align="center">{row['10. change percent']}</TableCell>
             </TableRow>
           ))}
         </TableBody>

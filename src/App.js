@@ -48,7 +48,7 @@ class App extends Component {
       this.setState(prevState => ({
             lastSearched : pattren
       }));
-      axios.get(`http://qoutescache-1.appspot.com/v2/search/${pattren}`)
+      axios.get(`https://qoutescache-1.appspot.com/v2/search/${pattren}`)
       .then((rep)=>{
         if(rep.data['search-key'] === this.state.lastSearched)
         {
