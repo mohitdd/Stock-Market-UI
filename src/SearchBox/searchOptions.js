@@ -9,17 +9,22 @@ class NestedList extends React.Component {
 
     constructor(props){
         super(props);
+        this.myRef = React.createRef();
         this.state = {
             member : this.props.things
         }
         this.componentMount = this.componentMount.bind(this);
-        this.myRef = React.createRef();
+    
     }
 
     componentMount(e) {
-        console.log("quote service will search: ");
-        console.log(this.refs.myRef);
-        this.props.finalResult(e.target.innerText);
+      if(e.target.childNodes[0].nodeType !== 3){
+        //HardCoding for Now , Will improve in future commits
+      this.props.finalResult(e.target.childNodes[0].childNodes[0].innerText);
+      }
+      else {
+              this.props.finalResult(e.target.innerText);
+           }
     }
 
   render() {
@@ -30,7 +35,7 @@ class NestedList extends React.Component {
     {this.props.things.security.type === undefined ? this.props.things.security.map(row => (<ListItem style = {{textAlign : "left"}} button>
       <ListItemText
        primary = { <React.Fragment>
-        <Typography ref={this.myRef} component="span" color="textPrimary" style = {{fontWeight : 'bold'}}>
+        <Typography component="span" color="textPrimary" style = {{fontWeight : 'bold'}}>
           {`${row['symbol']}`}
         </Typography>
       </React.Fragment>}
@@ -45,7 +50,7 @@ class NestedList extends React.Component {
       
       />
     </ListItem>)) :  (<ListItem style = {{textAlign : "left"}} button>
-      <ListItemText 
+      <ListItemText ref={this.myRef}
         primary ={ <React.Fragment>
         <Typography component="span" color="textPrimary" style = {{fontWeight : 'bold'}}>
           {`${this.props.things.security['symbol']}`}

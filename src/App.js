@@ -21,17 +21,18 @@ class App extends Component {
   }
   }
   addForMonitor = (companyInfo) => {
-      this.setState(prevState => ({ circle : true}))
+      this.setState(prevState => ({ circle : true}));
+      console.log("Call is for: "+companyInfo);
       axios.get(`https://qoutescache-1.appspot.com/v2/quotes/${companyInfo}`)
       .then((rep) =>{
-          if(this.state.aviod_Red.indexOf(rep.data['01. symbol']) === -1) {
+          if(this.state.aviod_Red.indexOf(rep.data.quotes.quote.symbol) === -1) {
             this.setState(prevState => ({
                   companies : this.state.companies.concat(rep.data),
-                  aviod_Red : this.state.aviod_Red.concat(rep.data['01. symbol'])
+                  aviod_Red : this.state.aviod_Red.concat(rep.data.quotes.quote.symbol)
             }))
             console.log("Total companies are :"+ this.state.aviod_Red.length);
           }
-          else if(rep.data["01. symbol"] === undefined){
+          else if(rep.data.quotes.quote.symbol === undefined){
             
               swal ( "Oops" , `${companyInfo} Stock Doesn't Exists` ,  "error" )
 
@@ -65,7 +66,7 @@ class App extends Component {
       this.state.pattren = [];
       document.body.style.backgroundColor = "";
       this.refs.mohit.state.coName = "";
-      console.log(this.refs.mohit.state.coName);
+     // console.log("DHINGRA: "+this.refs.mohit.props.updateFunction);
       }
 
   render() {

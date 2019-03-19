@@ -35,6 +35,7 @@ function Example(props) {
         <TableHead>
           <TableRow>
             <TableCell style={{fontWeight : '600', fontSize : '1.2em', color :'black'}} align="center">Company</TableCell>
+            <TableCell style={{fontWeight : '600', fontSize : '1.2em', color :'black'}} align="center">Description</TableCell>
             <TableCell style={{fontWeight : '600', fontSize : '1.2em', color :'black'}} align="center">Price</TableCell>
             <TableCell style={{fontWeight : '600', fontSize : '1.2em', color :'black'}} align="center">High</TableCell>
             <TableCell style={{fontWeight : '600', fontSize : '1.2em', color :'black'}} align="center">Low</TableCell>
@@ -45,12 +46,13 @@ function Example(props) {
           {props.list.map(row => (
             <TableRow>
               <TableCell style = {{fontSize : '1rem'}} component="th" scope="row" align="center">
-                {row['01. symbol']}
+                {row.quotes.quote.symbol}
               </TableCell>
-              <TableCell style = {{fontSize : '1rem'}} align="center">{row['05. price']}</TableCell>
-              <TableCell style = {{fontSize : '1rem'}} align="center">{row['03. high']}</TableCell>
-              <TableCell style = {{fontSize : '1rem'}} align="center">{row['04. low']}</TableCell>
-              <TableCell style = {{color : row['10. change percent'] > 0 ? 'green' : 'red' ,fontSize : '1rem'}} align="center">{row['10. change percent']}</TableCell>
+              <TableCell style = {{fontSize : '1rem'}} align="center">{row.quotes.quote.description}</TableCell>
+              <TableCell style = {{fontSize : '1rem'}} align="center">{row.quotes.quote.last}</TableCell>
+              <TableCell style = {{fontSize : '1rem'}} align="center">{row.quotes.quote.high}</TableCell>
+              <TableCell style = {{fontSize : '1rem'}} align="center">{row.quotes.quote.low}</TableCell>
+              <TableCell style = {{color : row.quotes.quote.change_percentage > 0 ? 'green' : 'red' ,fontSize : '1rem'}} align="center">{row.quotes.quote.change_percentage}</TableCell>
             </TableRow>
           ))}
         </TableBody>
