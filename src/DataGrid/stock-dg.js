@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import DeleteRow from './DeleteRow'
+
 
 const styles = theme => ({
   root: {
@@ -27,13 +29,13 @@ const styles = theme => ({
 
 function Example(props) {
   const { classes } = props;
-  
 
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
+            <TableCell style={{fontWeight : '600', fontSize : '1.2em', color :'black'}} align="center">Select</TableCell>
             <TableCell style={{fontWeight : '600', fontSize : '1.2em', color :'black'}} align="center">Company</TableCell>
             <TableCell style={{fontWeight : '600', fontSize : '1.2em', color :'black'}} align="center">Description</TableCell>
             <TableCell style={{fontWeight : '600', fontSize : '1.2em', color :'black'}} align="center">Price</TableCell>
@@ -43,16 +45,17 @@ function Example(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.list.map(row => (
+          {props.somethingExtra === 0.0 ? console.log("None") : props.list.companies.map(row => (
             <TableRow>
+              <TableCell  align ="center"><DeleteRow/></TableCell>
               <TableCell style = {{fontSize : '1rem'}} component="th" scope="row" align="center">
-                {row.quotes.quote.symbol}
+                {row.symbol}
               </TableCell>
-              <TableCell style = {{fontSize : '1rem'}} align="center">{row.quotes.quote.description}</TableCell>
-              <TableCell style = {{fontSize : '1rem'}} align="center">{row.quotes.quote.last}</TableCell>
-              <TableCell style = {{fontSize : '1rem'}} align="center">{row.quotes.quote.high}</TableCell>
-              <TableCell style = {{fontSize : '1rem'}} align="center">{row.quotes.quote.low}</TableCell>
-              <TableCell style = {{color : row.quotes.quote.change_percentage > 0 ? 'green' : 'red' ,fontSize : '1rem'}} align="center">{row.quotes.quote.change_percentage}</TableCell>
+              <TableCell style = {{fontSize : '1rem'}} align="center">{row.description}</TableCell>
+              <TableCell style = {{fontSize : '1rem'}} align="center">{row.last}</TableCell>
+              <TableCell style = {{fontSize : '1rem'}} align="center">{row.high}</TableCell>
+              <TableCell style = {{fontSize : '1rem'}} align="center">{row.low}</TableCell>
+              <TableCell style = {{color : row.change_percentage > 0 ? 'green' : 'red' ,fontSize : '1rem'}} align="center">{row.change_percentage}</TableCell>
             </TableRow>
           ))}
         </TableBody>
